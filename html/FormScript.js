@@ -1,0 +1,71 @@
+// Aguarda o carregamento completo do DOM antes de executar o código
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtém referência ao formulário
+    const formulario = document.getElementById('meuFormulario');
+    
+    // Obtém referência ao campo CPF para aplicar a máscara
+    const cpfInput = document.getElementById('cpf');
+    
+    // Adiciona máscara ao CPF (formatação automática)
+    cpfInput.addEventListener('input', function(e) {
+        // Remove tudo que não é dígito
+        let value = e.target.value.replace(/\D/g, '');
+        
+        // Aplica a máscara: 000.000.000-00
+        if (value.length > 3 && value.length <= 6) {
+            value = value.replace(/^(\d{3})/, '$1.');
+        } else if (value.length > 6 && value.length <= 9) {
+            value = value.replace(/^(\d{3})(\d{3})/, '$1.$2.');
+        } else if (value.length > 9) {
+            value = value.replace(/^(\d{3})(\d{3})(\d{3})/, '$1.$2.$3-');
+        }
+        
+        // Atualiza o valor do campo
+        e.target.value = value;
+    });
+    
+    // Adiciona evento de submit ao formulário
+    formulario.addEventListener('submit', function(e) {
+        // Previne o comportamento padrão de submit
+        e.preventDefault();
+        
+        // Obtém os valores dos campos
+        const cpf = document.getElementById('cpf').value;
+        const nome = document.getElementById('nome').value;
+        const sobrenome = document.getElementById('sobrenome').value;
+        const nascimento = document.getElementById('nascimento').value;
+        
+        // Validação simples dos campos
+        if (!cpf || !nome || !sobrenome || !nascimento) {
+            alert('Por favor, preencha todos os campos!');
+            return;
+        }
+        
+        // Validação simples do CPF (apenas verifica se tem 14 caracteres com máscara)
+        if (cpf.length !== 14) {
+            alert('CPF inválido! Deve ter 11 dígitos.');
+            return;
+        }
+        
+        // Cria um objeto com os dados do formulário
+        const dadosFormulario = {
+            cpf: cpf,
+            nome: nome,
+            sobrenome: sobrenome,
+            nascimento: nascimento
+        };
+        
+        // Exibe os dados no console (poderia ser enviado para um servidor aqui)
+        console.log('Dados do formulário:', dadosFormulario);
+        
+        // Exibe mensagem de sucesso
+        alert('Formulário enviado com sucesso!\n\n' +
+              `CPF: ${cpf}\n` +
+              `Nome: ${nome}\n` +
+              `Sobrenome: ${sobrenome}\n` +
+              `Nascimento: ${nascimento}`);
+        
+        // Reseta o formulário (opcional)
+        formulario.reset();
+    });
+});
