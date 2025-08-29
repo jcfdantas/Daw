@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem Vindo ao JavaScript</title>
+    <style>
+        /* Estilos básicos para a página */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Título que será estilizado via JavaScript -->
+    <h1 id="titulo">Bem Vindo ao JavaScript</h1>
+
+    <script>
+        // Aguarda o carregamento completo da página antes de executar o script
+        window.onload = function() {
+            
+            // Obtém a referência do elemento h1 com id "titulo"
+            var titulo = document.getElementById("titulo");
+            
+            // Altera a cor do texto para azul
+            titulo.style.color = "blue";
+            
+            // Altera o tamanho da fonte para 36 pixels
+            titulo.style.fontSize = "36px";
+            
+            // Adiciona margem superior de 20 pixels
+            titulo.style.marginTop = "20px";
+            
+            // Adiciona preenchimento interno de 15 pixels
+            titulo.style.padding = "15px";
+            
+            // Adiciona uma sombra ao texto
+            titulo.style.textShadow = "2px 2px 4px rgba(0,0,0,0.3)";
+            
+            // Altera o cursor para pointer quando passar sobre o título
+            titulo.style.cursor = "pointer";
+            
+            // Adiciona um evento de clique ao título
+            titulo.onclick = function() {
+                // Altera o texto quando clicado
+                titulo.innerHTML = "JavaScript é divertido!";
+                
+                // Muda a cor para verde quando clicado
+                titulo.style.color = "green";
+            };
+        };
+    </script>
+</body>
+</html>

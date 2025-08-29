@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemplo DOM</title>
+</head>
+<body>
+    <div id="conteudo">
+        <h1>Olá Mundo!</h1>
+        <button id="botao">Clique aqui</button>
+    </div>
+
+    <script>
+        // JavaScript acessando o DOM
+        const botao = document.getElementById('botao');
+        const titulo = document.querySelector('h1');
+        
+        // Modificando o DOM
+        botao.addEventListener('click', function() {
+            titulo.textContent = 'Texto alterado!';
+            titulo.style.color = 'red';
+        });
+    </script>
+</body>
+</html>
